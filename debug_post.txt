@@ -1,0 +1,75 @@
+2025-04-23 06:35:43 - Array
+(
+    [playlist_id] => 1
+    [song_id] => 1
+)
+
+2025-04-23 06:35:56 - Array
+(
+    [playlist_id] => 1
+    [song_id] => 1
+)
+
+2025-04-23 06:39:59 - Array
+(
+    [playlist_id] => 1
+    [song_id] => 1
+    [remove_from_playlist] => 1
+)
+
+2025-04-23 06:44:08 - Array
+(
+    [playlist_id] => 1
+    [song_id] => 1
+    [add_to_playlist] => 
+)
+
+2025-04-23 06:44:15 - Array
+(
+    [playlist_id] => 1
+    [song_id] => 1
+    [remove_from_playlist] => 1
+)
+
+2025-04-23 07:19:07 - Array
+(
+    [playlist_id] => 1
+    [song_id] => 5
+    [add_to_playlist] => 
+)
+
+2025-04-23 07:46:24 - Array
+(
+    [playlist_id] => 1
+    [song_id] => 5
+    [remove_from_playlist] => 1
+)
+
+2025-04-23 07:46:29 - Array
+(
+    [playlist_id] => 1
+    [song_id] => 5
+    [add_to_playlist] => 
+)
+
+2025-04-23 08:25:24 - Array
+(
+    [playlist_id] => 2
+    [song_id] => 5
+    [add_to_playlist] => 
+)
+
+2025-04-23 08:25:29 - Array
+(
+    [playlist_id] => 2
+    [song_id] => 3
+    [add_to_playlist] => 
+)
+
+2025-04-23 08:25:37 - Array
+(
+    [playlist_id] => 2
+    [song_id] => 6
+    [add_to_playlist] => 
+)
+
