@@ -1,0 +1,156 @@
+2025-04-23 06:35:43 - Array
+(
+    [playlist_id] => 1
+    [song_id] => 1
+)
+
+2025-04-23 06:35:56 - Array
+(
+    [playlist_id] => 1
+    [song_id] => 1
+)
+
+2025-04-23 06:39:59 - Array
+(
+    [playlist_id] => 1
+    [song_id] => 1
+    [remove_from_playlist] => 1
+)
+
+2025-04-23 06:44:08 - Array
+(
+    [playlist_id] => 1
+    [song_id] => 1
+    [add_to_playlist] => 
+)
+
+2025-04-23 06:44:15 - Array
+(
+    [playlist_id] => 1
+    [song_id] => 1
+    [remove_from_playlist] => 1
+)
+
+2025-04-23 07:19:07 - Array
+(
+    [playlist_id] => 1
+    [song_id] => 5
+    [add_to_playlist] => 
+)
+
+2025-04-23 07:46:24 - Array
+(
+    [playlist_id] => 1
+    [song_id] => 5
+    [remove_from_playlist] => 1
+)
+
+2025-04-23 07:46:29 - Array
+(
+    [playlist_id] => 1
+    [song_id] => 5
+    [add_to_playlist] => 
+)
+
+2025-04-23 08:25:24 - Array
+(
+    [playlist_id] => 2
+    [song_id] => 5
+    [add_to_playlist] => 
+)
+
+2025-04-23 08:25:29 - Array
+(
+    [playlist_id] => 2
+    [song_id] => 3
+    [add_to_playlist] => 
+)
+
+2025-04-23 08:25:37 - Array
+(
+    [playlist_id] => 2
+    [song_id] => 6
+    [add_to_playlist] => 
+)
+
+2025-04-24 06:58:52 - Array
+(
+    [rating] => 4
+    [comment] => asd
+    [submit_review] => 
+)
+
+2025-04-24 06:59:55 - Array
+(
+    [review_id] => 15
+    [delete_review] => 
+)
+
+2025-04-24 07:33:02 - Array
+(
+    [playlist_id] => 2
+    [song_id] => 2
+    [add_to_playlist] => 
+)
+
+2025-04-24 07:33:47 - Array
+(
+    [playlist_id] => 2
+    [song_id] => 2
+    [remove_from_playlist] => 1
+)
+
+2025-04-24 07:33:53 - Array
+(
+    [playlist_id] => 2
+    [song_id] => 2
+    [add_to_playlist] => 
+)
+
+2025-04-24 07:36:02 - Array
+(
+    [rating] => 4
+    [comment] => asdasdasd
+    [submit_review] => 
+)
+
+2025-04-24 07:36:06 - Array
+(
+    [review_id] => 1
+    [delete_review] => 
+)
+
+2025-04-24 07:38:37 - Array
+(
+    [playlist_id] => 2
+    [song_id] => 3
+    [add_to_playlist] => 
+)
+
+2025-04-24 07:39:12 - Array
+(
+    [playlist_id] => 2
+    [song_id] => 3
+    [add_to_playlist] => 
+)
+
+2025-04-24 07:39:30 - Array
+(
+    [playlist_id] => 2
+    [song_id] => 4
+    [add_to_playlist] => 
+)
+
+2025-04-24 17:16:01 - Array
+(
+    [rating] => 5
+    [comment] => ok
+    [submit_review] => 
+)
+
+2025-04-24 17:16:11 - Array
+(
+    [review_id] => 2
+    [delete_review] => 
+)
+
