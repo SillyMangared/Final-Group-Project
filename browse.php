@@ -227,6 +227,18 @@ $total_content = $type === 'songs' ? $total_items : ($type === 'albums' ? $total
 
 // Calculate total pages
 $total_pages = ceil($total_content / $items_per_page);
+
+// Get all playlist songs for modals
+$playlist_songs = [];
+foreach ($playlists as $playlist) {
+    $playlist_songs[$playlist['id']] = get_playlist_songs($playlist['id']);
+}
+
+// Get all album songs for modals
+$album_songs = [];
+foreach ($albums as $album) {
+    $album_songs[$album['id']] = get_album_songs($album['id']);
+}
 ?>
 
 <div class="container">
@@ -296,20 +308,18 @@ $total_pages = ceil($total_content / $items_per_page);
                     <h3>Albums</h3>
                     <div class="item-grid">
                         <?php foreach ($albums as $album): ?>
-                            <div class="item-card">
-                                <a href="album.php?id=<?= $album['id'] ?>">
-                                    <div class="item-thumbnail">
-                                        <img src="assets/uploads/thumbnails/<?= htmlspecialchars($album['thumbnail']) ?>" alt="<?= htmlspecialchars($album['title']) ?>">
-                                        <span class="item-type">Album</span>
+                            <div class="album-card" data-id="<?= $album['id'] ?>" data-type="album">
+                                <div class="item-thumbnail">
+                                    <img src="assets/uploads/thumbnails/<?= htmlspecialchars($album['thumbnail']) ?>" alt="<?= htmlspecialchars($album['title']) ?>">
+                                    <span class="item-type">Album</span>
+                                </div>
+                                <div class="item-info">
+                                    <h3><?= htmlspecialchars($album['title']) ?></h3>
+                                    <p>By <?= htmlspecialchars($album['username']) ?></p>
+                                    <div class="item-meta">
+                                        <span><i class="fas fa-music"></i> <?= $album['song_count'] ?> songs</span>
                                     </div>
-                                    <div class="item-info">
-                                        <h3><?= htmlspecialchars($album['title']) ?></h3>
-                                        <p>By <?= htmlspecialchars($album['username']) ?></p>
-                                        <div class="item-meta">
-                                            <span><i class="fas fa-music"></i> <?= $album['song_count'] ?> songs</span>
-                                        </div>
-                                    </div>
-                                </a>
+                                </div>
                             </div>
                         <?php endforeach; ?>
                     </div>
@@ -321,20 +331,18 @@ $total_pages = ceil($total_content / $items_per_page);
                     <h3>Playlists</h3>
                     <div class="item-grid">
                         <?php foreach ($playlists as $playlist): ?>
-                            <div class="item-card">
-                                <a href="playlist.php?id=<?= $playlist['id'] ?>">
-                                    <div class="item-thumbnail">
-                                        <img src="assets/uploads/thumbnails/<?= htmlspecialchars($playlist['thumbnail']) ?>" alt="<?= htmlspecialchars($playlist['title']) ?>">
-                                        <span class="item-type">Playlist</span>
+                            <div class="playlist-card" data-id="<?= $playlist['id'] ?>" data-type="playlist">
+                                <div class="item-thumbnail">
+                                    <img src="assets/uploads/thumbnails/<?= htmlspecialchars($playlist['thumbnail']) ?>" alt="<?= htmlspecialchars($playlist['title']) ?>">
+                                    <span class="item-type">Playlist</span>
+                                </div>
+                                <div class="item-info">
+                                    <h3><?= htmlspecialchars($playlist['title']) ?></h3>
+                                    <p>By <?= htmlspecialchars($playlist['username']) ?></p>
+                                    <div class="item-meta">
+                                        <span><i class="fas fa-music"></i> <?= $playlist['song_count'] ?> songs</span>
                                     </div>
-                                    <div class="item-info">
-                                        <h3><?= htmlspecialchars($playlist['title']) ?></h3>
-                                        <p>By <?= htmlspecialchars($playlist['username']) ?></p>
-                                        <div class="item-meta">
-                                            <span><i class="fas fa-music"></i> <?= $playlist['song_count'] ?> songs</span>
-                                        </div>
-                                    </div>
-                                </a>
+                                </div>
                             </div>
                         <?php endforeach; ?>
                     </div>
@@ -367,6 +375,60 @@ $total_pages = ceil($total_content / $items_per_page);
         <?php endif; ?>
     </section>
 </div>
+
+<!-- Album Modals -->
+<?php foreach ($albums as $album): ?>
+    <div class="modal" id="album-modal-<?= $album['id'] ?>">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><?= htmlspecialchars($album['title']) ?></h2>
+                <button class="close-modal">×</button>
+            </div>
+            <div class="song-list">
+                <?php if (empty($album_songs[$album['id']])): ?>
+                    <p>No songs in this album.</p>
+                <?php else: ?>
+                    <?php foreach($album_songs[$album['id']] as $song): ?>
+                        <div class="song-item">
+                            <img src="assets/uploads/thumbnails/<?= htmlspecialchars($song['thumbnail']) ?>" alt="<?= htmlspecialchars($song['title']) ?>">
+                            <div class="song-info">
+                                <h4><a href="item.php?id=<?= $song['id'] ?>"><?= htmlspecialchars($song['title']) ?></a></h4>
+                                <p>By <?= htmlspecialchars($song['username']) ?></p>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+<?php endforeach; ?>
+
+<!-- Playlist Modals -->
+<?php foreach ($playlists as $playlist): ?>
+    <div class="modal" id="playlist-modal-<?= $playlist['id'] ?>">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><?= htmlspecialchars($playlist['title']) ?></h2>
+                <button class="close-modal">×</button>
+            </div>
+            <div class="song-list">
+                <?php if (empty($playlist_songs[$playlist['id']])): ?>
+                    <p>No songs in this playlist.</p>
+                <?php else: ?>
+                    <?php foreach($playlist_songs[$playlist['id']] as $song): ?>
+                        <div class="song-item">
+                            <img src="assets/uploads/thumbnails/<?= htmlspecialchars($song['thumbnail']) ?>" alt="<?= htmlspecialchars($song['title']) ?>">
+                            <div class="song-info">
+                                <h4><a href="item.php?id=<?= $song['id'] ?>"><?= htmlspecialchars($song['title']) ?></a></h4>
+                                <p>By <?= htmlspecialchars($song['username']) ?></p>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+<?php endforeach; ?>
 
 <style>
     /* Additional styles for browse page */
@@ -432,6 +494,124 @@ $total_pages = ceil($total_content / $items_per_page);
         color: var(--text-color);
     }
     
+    /* Modal styles */
+    .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        z-index: 1000;
+        overflow-y: auto;
+    }
+
+    .modal-content {
+        background-color: #fff;
+        margin: 5% auto;
+        padding: 20px;
+        border-radius: 8px;
+        width: 90%;
+        max-width: 600px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        position: relative;
+    }
+
+    .dark-mode .modal-content {
+        background-color: #2d2d2d;
+        color: var(--text-light);
+    }
+
+    .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .modal-header h2 {
+        font-size: 1.8rem;
+    }
+
+    .close-modal {
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: var(--text-color);
+    }
+
+    .dark-mode .close-modal {
+        color: var(--text-light);
+    }
+
+    .close-modal:hover {
+        color: var(--primary-color);
+    }
+
+    .song-list {
+        max-height: 400px;
+        overflow-y: auto;
+        margin-bottom: 20px;
+    }
+
+    .song-item {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        border-bottom: 1px solid var(--border-color);
+        transition: background-color var(--transition-speed);
+    }
+
+    .song-item:hover {
+        background-color: var(--light-color);
+    }
+
+    .dark-mode .song-item:hover {
+        background-color: #3a3a3a;
+    }
+
+    .song-item img {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        border-radius: 4px;
+        margin-right: 10px;
+    }
+
+    .song-info {
+        flex: 1;
+    }
+
+    .song-info h4 {
+        margin: 0;
+        font-size: 1rem;
+    }
+
+    .song-info p {
+        margin: 5px 0 0;
+        font-size: 0.9rem;
+        color: #777;
+    }
+
+    .dark-mode .song-info p {
+        color: #aaa;
+    }
+
+    .song-item a {
+        color: var(--primary-color);
+    }
+
+    .song-item a:hover {
+        color: var(--dark-color);
+    }
+    
+    /* Make album and playlist cards clickable */
+    .album-card, .playlist-card {
+        cursor: pointer;
+    }
+    
     @media (max-width: 768px) {
         .browse-header {
             flex-direction: column;
@@ -444,5 +624,49 @@ $total_pages = ceil($total_content / $items_per_page);
         }
     }
 </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Album click handlers
+    const albumCards = document.querySelectorAll('.album-card');
+    albumCards.forEach(card => {
+        card.addEventListener('click', function() {
+            const albumId = this.dataset.id;
+            const modal = document.getElementById(`album-modal-${albumId}`);
+            if (modal) {
+                modal.style.display = 'block';
+            }
+        });
+    });
+    
+    // Playlist click handlers
+    const playlistCards = document.querySelectorAll('.playlist-card');
+    playlistCards.forEach(card => {
+        card.addEventListener('click', function() {
+            const playlistId = this.dataset.id;
+            const modal = document.getElementById(`playlist-modal-${playlistId}`);
+            if (modal) {
+                modal.style.display = 'block';
+            }
+        });
+    });
+
+    // Close modals
+    const closeButtons = document.querySelectorAll('.close-modal');
+    closeButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const modal = this.closest('.modal');
+            modal.style.display = 'none';
+        });
+    });
+
+    // Close modal when clicking outside
+    window.addEventListener('click', function(e) {
+        if (e.target.classList.contains('modal')) {
+            e.target.style.display = 'none';
+        }
+    });
+});
+</script>
 
 <?php require_once 'includes/footer.php'; ?>
