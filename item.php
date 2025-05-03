@@ -37,7 +37,7 @@ if ($item['type'] == 'audio') {
     }
 }
 
-$related_items = $album_songs ?: get_items(10, 0, $item['user_id'], $item['type']);
+$related_items = $album ? $album_songs : [$item];
 
 // Handle adding to playlist
 $playlistError = '';
